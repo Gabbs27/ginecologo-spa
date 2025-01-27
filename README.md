@@ -1,3 +1,50 @@
+# Consultorio Ginecológico Dr. Pablo Francisco Abreu Cornelio
+
+Aplicación web moderna desarrollada con React para el consultorio ginecológico del Dr. Pablo Francisco Abreu Cornelio. Esta Single Page Application (SPA) está diseñada para proporcionar información profesional y facilitar la comunicación con los pacientes.
+
+## Características
+
+- Diseño moderno y responsivo
+- Información detallada sobre servicios médicos
+- Formulario de contacto
+- Integración con WhatsApp para agendar citas
+- Optimizado para dispositivos móviles y escritorio
+
+## Tecnologías Utilizadas
+
+- React.js
+- CSS3 con variables personalizadas
+- Diseño responsivo
+- Integración con WhatsApp Business API
+
+## Instalación
+
+1. Clone el repositorio:
+```bash
+git clone 
+```
+
+2. Instale las dependencias:
+```bash
+npm install
+```
+
+3. Inicie el servidor de desarrollo:
+```bash
+npm start
+```
+
+La aplicación estará disponible en [http://localhost:3000](http://localhost:3000)
+
+## Scripts Disponibles
+
+- `npm start`: Inicia el servidor de desarrollo
+- `npm test`: Ejecuta las pruebas
+- `npm run build`: Crea la versión de producción
+- `npm run eject`: Expone las configuraciones de webpack
+
+## Estructura del Proyecto
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

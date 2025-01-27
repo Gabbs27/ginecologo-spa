@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dr. Abreu Cornelio",
+  "name": "Consultorio Ginecológico Dr. Pablo Francisco Abreu Cornelio",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#cde9f9",
   "background_color": "#ffffff"
 }
