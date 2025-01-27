@@ -2,7 +2,7 @@
   "name": "ginecologo-spa",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Gabbs27/ginecologo-spa",
+  "homepage": "https://gabbs27.github.io/ginecologo-spa",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
