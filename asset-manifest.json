@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Gabbs27/ginecologo-spa/static/css/main.8953a324.css",
-    "main.js": "/Gabbs27/ginecologo-spa/static/js/main.cd89326e.js",
-    "static/js/453.02278cc2.chunk.js": "/Gabbs27/ginecologo-spa/static/js/453.02278cc2.chunk.js",
-    "index.html": "/Gabbs27/ginecologo-spa/index.html",
-    "main.8953a324.css.map": "/Gabbs27/ginecologo-spa/static/css/main.8953a324.css.map",
-    "main.cd89326e.js.map": "/Gabbs27/ginecologo-spa/static/js/main.cd89326e.js.map",
-    "453.02278cc2.chunk.js.map": "/Gabbs27/ginecologo-spa/static/js/453.02278cc2.chunk.js.map"
+    "main.css": "/ginecologo-spa/static/css/main.8953a324.css",
+    "main.js": "/ginecologo-spa/static/js/main.159f9630.js",
+    "static/js/453.02278cc2.chunk.js": "/ginecologo-spa/static/js/453.02278cc2.chunk.js",
+    "index.html": "/ginecologo-spa/index.html",
+    "main.8953a324.css.map": "/ginecologo-spa/static/css/main.8953a324.css.map",
+    "main.159f9630.js.map": "/ginecologo-spa/static/js/main.159f9630.js.map",
+    "453.02278cc2.chunk.js.map": "/ginecologo-spa/static/js/453.02278cc2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8953a324.css",
-    "static/js/main.cd89326e.js"
+    "static/js/main.159f9630.js"
   ]
 }
