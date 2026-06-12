@@ -1,0 +1,210 @@
+---
+import { site, whatsappLink } from "../config/site.js";
+import Icon from "./Icon.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+// Monograma del marco decorativo cuando no hay foto: usa doctor.monogram si
+// está configurado; si no, las iniciales de las dos primeras palabras del
+// nombre (quitando "Dr."/"Dra.") — con apellidos compuestos conviene fijarlo.
+const words = site.doctor.name.replace(/^Dra?\.?\s+/i, "").split(/\s+/);
+const initials =
+  site.doctor.monogram || (words[0]?.[0] ?? "") + (words[1]?.[0] ?? "");
+const photoAlt = site.doctor.photoAlt || `Retrato del ${site.doctor.name}`;
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow hero-rise" style="--rise-delay: 0.05s">
+        {site.doctor.specialty}
+      </p>
+      <h1 class="hero-rise" style="--rise-delay: 0.15s">
+        {site.hero.title} <em>{site.hero.emphasis}</em>
+      </h1>
+      <p class="lede hero-rise" style="--rise-delay: 0.25s">
+        {site.hero.lede}
+      </p>
+      <div class="hero-actions hero-rise" style="--rise-delay: 0.35s">
+        <a
+          href={whatsappLink}
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="whatsapp" size={19} />
+          Agendar cita por WhatsApp
+        </a>
+        <a href="#servicios" class="btn btn-ghost">Conocer servicios</a>
+      </div>
+      <dl class="hero-stats hero-rise" style="--rise-delay: 0.45s">
+        {
+          site.hero.stats.map((stat) => (
+            <div>
+              <dt>{stat.label}</dt>
+              <dd>{stat.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="hero-portrait hero-rise" style="--rise-delay: 0.3s">
+      <div class="arch-outline" aria-hidden="true"></div>
+      <div class="arch-frame">
+        {
+          site.doctor.photo ? (
+            <img
+              src={`${base}${site.doctor.photo}`}
+              alt={photoAlt}
+              width="460"
+              height="560"
+              loading="eager"
+            />
+          ) : (
+            <div class="arch-placeholder" aria-hidden="true">
+              <span class="monogram">{initials}</span>
+              <span class="monogram-caption">{site.doctor.shortName}</span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3.5rem, 8vw, 6rem) clamp(3rem, 7vw, 5rem);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5.5vw, 3.9rem);
+    margin-block: 1rem 1.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 72, "SOFT" 60;
+    color: var(--rose-deep);
+  }
+
+  .lede {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    max-width: 30rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: 2.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .hero-stats dt {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .hero-stats dd {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 0.15rem;
+  }
+
+  /* Retrato con marco en arco */
+  .hero-portrait {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 420px);
+  }
+
+  .arch-frame {
+    position: relative;
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    box-shadow: var(--shadow-lift);
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(160deg, var(--rose-tint), var(--paper-deep) 70%);
+  }
+
+  .arch-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .arch-outline {
+    position: absolute;
+    inset: 0;
+    transform: translate(16px, 16px);
+    border: 1.5px solid var(--rose);
+    border-radius: var(--radius-arch);
+    opacity: 0.55;
+  }
+
+  .arch-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .monogram {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 7.5rem);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--rose-deep);
+    line-height: 1;
+  }
+
+  .monogram-caption {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-portrait {
+      grid-row: 1;
+      width: min(100%, 320px);
+    }
+
+    .hero-stats {
+      flex-wrap: wrap;
+      gap: 1.25rem 2rem;
+    }
+  }
+</style>

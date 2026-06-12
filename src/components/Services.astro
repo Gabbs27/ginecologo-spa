@@ -1,0 +1,124 @@
+---
+import { site } from "../config/site.js";
+import Icon from "./Icon.astro";
+---
+
+<section id="servicios" class="section services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">{site.sections.services}</p>
+      <h2>{site.sections.servicesTitle}</h2>
+    </div>
+
+    <div class="services-grid">
+      {
+        site.services.map((service, index) => (
+          <article
+            class="service-card reveal"
+            style={`--reveal-delay: ${index * 0.08}s`}
+          >
+            <header class="card-top">
+              <span class="card-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="card-icon">
+                <Icon name={service.icon} size={26} />
+              </span>
+            </header>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--paper-deep);
+    border-block: 1px solid var(--line);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+
+  .service-card {
+    position: relative;
+    padding: 2rem 2rem 2.2rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  /* Filo de acento que crece al pasar el mouse */
+  .service-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--rose-deep);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .service-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.4rem;
+  }
+
+  .card-number {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--rose);
+  }
+
+  .card-icon {
+    display: grid;
+    place-items: center;
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 50%;
+    background: var(--rose-tint);
+    color: var(--rose-deep);
+  }
+
+  h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    color: var(--ink-soft);
+    font-size: 0.99rem;
+  }
+
+  @media (max-width: 720px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+import { site, whatsappLink } from "../config/site.js";
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="#contenido" class="wordmark">
+      <span class="wordmark-name">{site.doctor.shortName}</span>
+      <span class="wordmark-specialty">{site.doctor.specialty}</span>
+    </a>
+
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#sobre-mi">{site.sections.about}</a></li>
+        <li><a href="#servicios">{site.sections.services}</a></li>
+        <li><a href="#contacto">{site.sections.contact}</a></li>
+      </ul>
+    </nav>
+
+    <a
+      href={whatsappLink}
+      class="btn btn-primary header-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Agendar cita
+    </a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    min-height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-block: 0.6rem;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .wordmark-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .wordmark-specialty {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+  }
+
+  nav ul {
+    display: flex;
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    list-style: none;
+  }
+
+  nav a {
+    position: relative;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.97rem;
+    padding-block: 0.35rem;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--rose-deep);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  nav a:hover::after,
+  nav a:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .header-cta {
+    padding: 0.6rem 1.3rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 760px) {
+    .header-inner {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .wordmark {
+      align-items: center;
+      width: 100%;
+    }
+
+    .header-cta {
+      display: none; /* en móvil ya está el botón flotante de WhatsApp */
+    }
+  }
+</style>

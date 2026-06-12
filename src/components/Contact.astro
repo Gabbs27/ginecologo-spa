@@ -1,0 +1,156 @@
+---
+import { site } from "../config/site.js";
+import Icon from "./Icon.astro";
+import ContactForm from "./ContactForm.jsx";
+---
+
+<section id="contacto" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">{site.sections.contact}</p>
+      <h2>{site.sections.contactTitle}</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <ul class="info-list">
+          <li>
+            <span class="info-icon"><Icon name="pin" size={20} /></span>
+            <div>
+              <span class="info-label">Dirección</span>
+              {
+                site.contact.mapsUrl ? (
+                  <a href={site.contact.mapsUrl} target="_blank" rel="noopener noreferrer">
+                    {site.contact.address}
+                  </a>
+                ) : (
+                  <span>{site.contact.address}</span>
+                )
+              }
+            </div>
+          </li>
+          <li>
+            <span class="info-icon"><Icon name="phone" size={20} /></span>
+            <div>
+              <span class="info-label">Teléfono</span>
+              <a href={`tel:+${site.contact.phoneE164}`}>{site.contact.phoneDisplay}</a>
+            </div>
+          </li>
+          <li>
+            <span class="info-icon"><Icon name="mail" size={20} /></span>
+            <div>
+              <span class="info-label">Correo</span>
+              <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+            </div>
+          </li>
+          <li>
+            <span class="info-icon"><Icon name="clock" size={20} /></span>
+            <div>
+              <span class="info-label">Horario de atención</span>
+              <ul class="hours">
+                {
+                  site.hours.map((h) => (
+                    <li>
+                      <span>{h.days}</span>
+                      <span class="hours-time">{h.hours}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal" style="--reveal-delay: 0.15s">
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .contact-info {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 2rem;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .info-list > li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .info-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--rose-tint);
+    color: var(--rose-deep);
+  }
+
+  .info-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.2rem;
+  }
+
+  .info-list a {
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration-color: var(--rose);
+    text-underline-offset: 3px;
+  }
+
+  .info-list a:hover {
+    color: var(--rose-deep);
+  }
+
+  .hours {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 15rem;
+  }
+
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .hours-time {
+    font-weight: 700;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

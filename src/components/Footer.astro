@@ -1,0 +1,137 @@
+---
+import { site } from "../config/site.js";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+const socials = [
+  { name: "Facebook", icon: "facebook", url: site.social.facebook },
+  { name: "Instagram", icon: "instagram", url: site.social.instagram },
+  { name: "LinkedIn", icon: "linkedin", url: site.social.linkedin },
+].filter((s) => s.url);
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-name">{site.doctor.name}</p>
+      <p class="footer-specialty">{site.doctor.specialty}</p>
+    </div>
+
+    <div class="footer-contact">
+      <a href={`tel:+${site.contact.phoneE164}`}>{site.contact.phoneDisplay}</a>
+      <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      <span>{site.contact.address}</span>
+    </div>
+
+    {
+      socials.length > 0 && (
+        <ul class="footer-social" aria-label="Redes sociales">
+          {socials.map((s) => (
+            <li>
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${s.name} del consultorio`}
+              >
+                <Icon name={s.icon} size={20} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} {site.doctor.name}. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--paper);
+    margin-top: clamp(3rem, 7vw, 5rem);
+    padding-block: 3rem 0;
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 4rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .footer-specialty {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose-tint);
+    margin-top: 0.3rem;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.97rem;
+  }
+
+  .footer-contact a {
+    color: var(--paper);
+    text-decoration-color: var(--rose);
+    text-underline-offset: 3px;
+  }
+
+  .footer-contact a:hover {
+    color: var(--rose-tint);
+  }
+
+  .footer-contact span {
+    color: color-mix(in srgb, var(--paper) 72%, transparent);
+  }
+
+  .footer-social {
+    list-style: none;
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .footer-social a {
+    display: grid;
+    place-items: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+    color: var(--paper);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .footer-social a:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
+    padding-block: 1.4rem;
+    font-size: 0.88rem;
+    color: color-mix(in srgb, var(--paper) 70%, transparent);
+  }
+
+  /* El outline global (--rose-deep) no contrasta sobre el fondo oscuro */
+  .footer :global(a:focus-visible) {
+    outline-color: var(--paper);
+  }
+</style>

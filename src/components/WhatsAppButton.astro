@@ -1,0 +1,59 @@
+---
+import { whatsappLink } from "../config/site.js";
+import Icon from "./Icon.astro";
+---
+
+<a
+  href={whatsappLink}
+  class="whatsapp-button"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Agendar cita por WhatsApp"
+>
+  <Icon name="whatsapp" size={22} />
+  <span class="whatsapp-label">Agendar cita</span>
+</a>
+
+<style>
+  .whatsapp-button {
+    position: fixed;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    /* Verde oscuro oficial de WhatsApp: contraste AA con texto blanco,
+       a diferencia del verde claro #25D366 del template original. */
+    background: var(--whatsapp);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.97rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(7, 94, 84, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .whatsapp-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(7, 94, 84, 0.5);
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-button {
+      padding: 1rem;
+      border-radius: 50%;
+    }
+
+    .whatsapp-label {
+      /* Visualmente oculto: el aria-label sigue anunciando la acción */
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+  }
+</style>
